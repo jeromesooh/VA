@@ -51,7 +51,6 @@
     </style>
 </head>
 <body>
-    <h1>Interactive Hyperbolic Tree of Cost To Raise A Kid</h1>
     <div class="container">
         <svg id="tree" width="750" height="750"></svg>
         <svg class="legend" width="250" height="250"></svg>
@@ -117,16 +116,16 @@
             ]
         };
 
-const width = 1000;
-const height = 1000;
+const width = 750;
+const height = 750;
 const radius = (Math.min(width, height) / 2) - 40; // Adjust radius if needed
+
+const backgroundColor = "#E9E6DA"; // Set this to the background color of your dashboard
 
 const svg = d3.select("#tree")
     .attr("viewBox", [-width / 2, -height / 2, width, height])
-    .style("background-color", backgroundColor) // Set background color
-    .style("display", "block") // Make sure SVG is centered
-    .style("margin", "0 auto") // Center horizontally
-    .style("font", "12px sans-serif");
+    .attr("transform", "scale(1.3)"); // Adjust scale as needed
+
 
 // Your existing code to draw the hyperbolic tree here
 
@@ -217,6 +216,7 @@ const svg = d3.select("#tree")
     </script>
 </body>
 </html>
+
 
 
 
