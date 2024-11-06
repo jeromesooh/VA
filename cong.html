@@ -53,7 +53,7 @@
     </style>
 </head>
 <body>
-    <h1>Interactive Hyperbolic Tree of Baby Products</h1>
+    <h1>Interactive Hyperbolic Tree of Cost To Raise A Kid</h1>
     <div class="container">
         <svg id="tree" width="750" height="750"></svg>
         <svg class="legend" width="250" height="250"></svg>
@@ -62,10 +62,10 @@
 
     <script>
         const data = {
-            "name": "Stages",
+            "name": "Total Cost",
             "children": [
                 {
-                    "name": "Pregnancy-related Costs",
+                    "name": "Pregnancy-related",
                     "children": [
                         { "name": "Pregnancy-related Costs", "price": 15000.0 },
                         { "name": "Pre-pregnancy Checkup", "price": 820.0 },
@@ -76,7 +76,7 @@
                     ]
                 },
                 {
-                    "name": "Baby's 1st Year Costs",
+                    "name": "1st Year",
                     "children": [
                         { "name": "Diapers", "price": 780.0 },
                         { "name": "Formula Milk", "price": 900.0 },
@@ -88,7 +88,7 @@
                     ]
                 },
                 {
-                    "name": "Age 1 to 6 Years Costs",
+                    "name": "1 to 6 Years",
                     "children": [
                         { "name": "Infant Care/Nanny (month 13 to 18)", "price": 10500.0 },
                         { "name": "Childcare (from month 19)", "price": 105600.0 },
@@ -99,7 +99,7 @@
                     ]
                 },
                 {
-                    "name": "Age 7 to 18 Years Costs",
+                    "name": "7 to 18 Years",
                     "children": [
                         { "name": "School Essentials", "price": 12000.0 },
                         { "name": "Pocket Money", "price": 25200.0 },
@@ -167,14 +167,15 @@
             .attr("r", d => sizeScale(d.totalPrice))
             .attr("fill", d => colorScale(d.totalPrice));
 
-        node.append("text")
-            .attr("dy", "0.31em")
-            .attr("x", d => d.x < Math.PI === !d.children ? 6 : -6)
-            .attr("text-anchor", d => d.x < Math.PI === !d.children ? "start" : "end")
-            .attr("transform", d => d.x >= Math.PI ? "rotate(180)" : null)
+            node.append("text")
+            .attr("dy", d => d.depth === 0 ? "0em" : "-1.2em") // Moves "Stages" higher if it's the root
+            .attr("text-anchor", "middle") // Centers the text horizontally
+            .attr("transform", d => d.depth === 0 ? "rotate(260)" : (d.x >= Math.PI ? "rotate(180)" : null)) // Keeps "Stages" horizontal
             .text(d => d.data.name)
             .clone(true).lower()
             .attr("stroke", "white");
+
+
 
         const tooltip = d3.select(".tooltip");
 
@@ -195,12 +196,7 @@
         const legendAxis = d3.axisBottom(legendScale)
             .ticks(5)
             .tickFormat(d3.format("$.2f"));
-
-        legendSvg.append("g")
-            .attr("class", "axis")
-            .attr("transform", "translate(0,40)")
-            .call(legendAxis);
-
+ 
         const gradient = legendSvg.append("defs")
             .append("linearGradient")
             .attr("id", "gradient")
@@ -212,23 +208,12 @@
         gradient.append("stop").attr("offset", "0%").attr("stop-color", "#6baed6").attr("stop-opacity", 1);
         gradient.append("stop").attr("offset", "100%").attr("stop-color", "#fd8d3c").attr("stop-opacity", 1);
 
-        legendSvg.append("rect")
-            .attr("x", 20)
-            .attr("y", 20)
-            .attr("width", 260)
-            .attr("height", 20)
-            .style("fill", "url(#gradient)");
+    
 
-        legendSvg.append("text")
-            .attr("x", 140)
-            .attr("y", 10)
-            .text("Price Range");
+   
     </script>
 </body>
 </html>
-
-
-
 
 
 
