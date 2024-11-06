@@ -150,10 +150,9 @@
 
         tree(root);
 
-        const sizeScale = d3.scaleLinear()
-            .domain([d3.min(root.descendants(), d => d.totalPrice), d3.max(root.descendants(), d => d.totalPrice)])
-            .range([3, 15]);  // Reduce node size range
-
+            const sizeScale = d3.scaleLinear()
+        .domain([d3.min(root.descendants(), d => d.totalPrice), d3.max(root.descendants(), d => d.totalPrice)])
+        .range([5, 5]); // Set fixed size for all nodes
         const colorScale = d3.scaleLinear()
             .domain([d3.min(root.descendants(), d => d.totalPrice), d3.max(root.descendants(), d => d.totalPrice)])
             .range(["#6baed6", "#fd8d3c"]);
@@ -174,10 +173,11 @@
             .join("g")
             .attr("transform", d => `rotate(${d.x * 180 / Math.PI - 90}) translate(${d.y},0)`);
 
-        node.append("circle")
-            .attr("r", d => sizeScale(d.totalPrice))
-            .attr("fill", d => colorScale(d.totalPrice));
+            node.append("circle")
+            .attr("r", 5) // Set a standard size for nodes, 5px radius
+            .attr("fill", "#888"); // Set a standard color (grey)
 
+    
         node.append("text")
             .attr("dy", d => d.depth === 0 ? "0em" : "-1.2em") 
             .attr("text-anchor", "middle")
@@ -202,11 +202,5 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
 
 
