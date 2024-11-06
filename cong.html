@@ -119,13 +119,19 @@
             ]
         };
 
+        
         const width = 1000;
-        const height = 1000;
-        const radius = width / 2;
+const height = 1000;
+const radius = (Math.min(width, height) / 2) - 40; // Adjust radius if needed
 
-        const svg = d3.select("#tree")
-            .attr("viewBox", [-width / 2, -height / 2, width, height])
-            .style("font", "12px sans-serif");
+const backgroundColor = "#E9E6DA"; // Set this to the background color of your dashboard
+
+const svg = d3.select("#tree")
+    .attr("viewBox", [-width / 2, -height / 2, width, height])
+    .style("background-color", backgroundColor) // Set background color
+    .style("display", "block") // Make sure SVG is centered
+    .style("margin", "0 auto") // Center horizontally
+    .style("font", "12px sans-serif");
 
         const tree = d3.tree()
             .size([2 * Math.PI, radius - 100])
