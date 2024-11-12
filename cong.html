@@ -186,7 +186,7 @@
             .attr("dy", d => d.depth === 0 ? "0em" : "-1.2em") 
             .attr("text-anchor", "middle")
             .attr("transform", d => d.depth === 0 ? "rotate(260)" : (d.x >= Math.PI ? "rotate(180)" : null))
-            .style("font-size", "13px")  // Reduce font size
+            .style("font-size", "16px")  // Reduce font size
             .text(d => d.data.name)
             .clone(true).lower()
             .attr("stroke", "white");
