@@ -131,8 +131,8 @@
             ]
         };
 
-        const width = 1000;
-        const height = 1000;
+        const width = 1500;
+        const height = 1500;
         const radius = (Math.min(width, height) / 2) - 40; 
 
         // const svg = d3.select("#tree")
@@ -193,7 +193,7 @@
             .attr("dy", d => d.depth === 0 ? "0em" : "-1.2em") 
             .attr("text-anchor", "middle")
             .attr("transform", d => d.depth === 0 ? "rotate(260)" : (d.x >= Math.PI ? "rotate(180)" : null))
-            .style("font-size", "12px")  // Reduce font size
+            .style("font-size", "30px")  // Reduce font size
             .text(d => d.data.name)
             .clone(true).lower()
             .attr("stroke", "white");
