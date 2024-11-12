@@ -180,20 +180,11 @@
             .attr("r", 5) // Set a standard size for nodes, 5px radius
             .attr("fill", "green"); // Set node color to green
             
-
-
-
-
-
-
-
-
-    
         node.append("text")
             .attr("dy", d => d.depth === 0 ? "0em" : "-1.2em") 
             .attr("text-anchor", "middle")
             .attr("transform", d => d.depth === 0 ? "rotate(260)" : (d.x >= Math.PI ? "rotate(180)" : null))
-            .style("font-size", "10px")  // Reduce font size
+            .style("font-size", "15px")  // Reduce font size
             .text(d => d.data.name)
             .clone(true).lower()
             .attr("stroke", "white");
